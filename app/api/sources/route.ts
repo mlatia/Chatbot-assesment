@@ -5,7 +5,7 @@ export async function GET() {
     try {
         const kb = await knowledge();
         return json({ version: kb.version, builtAt: kb.builtAt,
-            engine: process.env.OPENAI_API_KEY?.trim() ? 'openai-configured-not-verified' : 'extractive',
+            engine: process.env.GROQ_API_KEY?.trim() ? 'groq-configured-not-verified' : 'extractive',
             sources: kb.sources.map(({ id, label, url, title, fetchedAt, lines, sha256 }) => ({ id, label, url, title, fetchedAt, passages: lines.length, sha256 })) });
     } catch { return json({ error: 'Source metadata unavailable' }, 503); }
 }

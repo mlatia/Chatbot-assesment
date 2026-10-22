@@ -29,7 +29,7 @@ await new Promise(resolve => reservation.close(resolve));
 const base = `http://127.0.0.1:${port}`;
 let logs = '';
 const server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'start', '--hostname', '127.0.0.1', '--port', String(port)], {
-    env: { ...process.env, SUPABASE_URL: supabaseUrl, SUPABASE_SECRET_KEY: secret, ADMIN_REFRESH_TOKEN: admin, OPENAI_API_KEY: '', NEXT_TELEMETRY_DISABLED: '1' },
+    env: { ...process.env, SUPABASE_URL: supabaseUrl, SUPABASE_SECRET_KEY: secret, ADMIN_REFRESH_TOKEN: admin, GROQ_API_KEY: '', NEXT_TELEMETRY_DISABLED: '1' },
     stdio: ['ignore', 'pipe', 'pipe']
 });
 server.stdout.on('data', s => { logs += s; }); server.stderr.on('data', s => { logs += s; });
@@ -81,7 +81,7 @@ try {
         submission.once('error', reject);
         submission.once('exit', code => code === 0 ? resolve() : reject(new Error('Assessment HTTP tests failed')));
     });
-    console.log(JSON.stringify({ passed: true, target: 'local Next.js production build + PostgreSQL through test bridge', checks: ['health', 'homepage', 'sources', 'price', 'idempotency', 'follow-up', 'history', 'session isolation', 'cross-origin', 'invalid input', 'admin authorization', 'lead consent', 'lead save', 'gap log', 'reset'], assessmentHttpTestsPassed: 8, openaiCalls: 0 }));
+    console.log(JSON.stringify({ passed: true, target: 'local Next.js production build + PostgreSQL through test bridge', checks: ['health', 'homepage', 'sources', 'price', 'idempotency', 'follow-up', 'history', 'session isolation', 'cross-origin', 'invalid input', 'admin authorization', 'lead consent', 'lead save', 'gap log', 'reset'], assessmentHttpTestsPassed: 8, groqCalls: 0 }));
 } finally {
     server.kill('SIGTERM');
     await new Promise(resolve => { if (server.exitCode !== null) resolve(); else server.once('exit', resolve); });

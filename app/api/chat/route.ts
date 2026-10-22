@@ -1,6 +1,6 @@
 import { answerQuestion } from '@/lib/core';
 import { chunks } from '@/lib/retrieval';
-import { selectWithOpenAI } from '@/lib/model';
+import { selectWithGroq } from '@/lib/model';
 import { knowledge, session, json, sameOrigin, cookie, allowedRate, redact } from '@/lib/server';
 import { rpc } from '@/lib/storage';
 import type { Reply, State } from '@/lib/types';
@@ -40,11 +40,11 @@ export async function POST(req: Request) {
         if (completed) return json(completed, 200, { 'Set-Cookie': cookie(id, req) });
         const kb = await knowledge();
         let reply = answerQuestion(kb, body.message, lease.state);
-        const apiKey = process.env.OPENAI_API_KEY?.trim();
+        const apiKey = process.env.GROQ_API_KEY?.trim();
         if (apiKey && reply.intent === 'general' && reply.status === 'answered') {
             try {
                 const candidates = chunks(kb).filter(e => reply.evidenceIds.includes(e.id));
-                const ids = await selectWithOpenAI(body.message, candidates, apiKey, process.env.OPENAI_MODEL || 'gpt-4.1-mini');
+                const ids = await selectWithGroq(body.message, candidates, apiKey, process.env.OPENAI_MODEL || 'gpt-4.1-mini');
                 if (ids.length) {
                     const selected = candidates.filter(e => ids.includes(e.id));
                     reply = { ...reply,

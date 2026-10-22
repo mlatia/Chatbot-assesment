@@ -7,7 +7,7 @@ export async function GET() {
         await rpc('health');
         const kb = await knowledge();
         return json({ status: 'ok', sources: kb.sources.length, knowledgeVersion: kb.version,
-            engine: process.env.OPENAI_API_KEY?.trim() ? 'openai-configured-not-verified' : 'extractive' });
+            engine: process.env.GROQ_API_KEY?.trim() ? 'openai-configured-not-verified' : 'extractive' });
     } catch {
         return json({ status: 'unavailable', error: 'Check Supabase project status, server environment and supabase/schema.sql.' }, 503);
     }
