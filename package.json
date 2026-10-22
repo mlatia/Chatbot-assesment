@@ -1,0 +1,35 @@
+{
+  "name": "placidway-vercel-supabase",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build --webpack",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test:submission": "node --env-file-if-exists=.env.local --experimental-strip-types scripts/test-submission.ts",
+    "check:deployment": "node --env-file-if-exists=.env.local scripts/check-deployment.mjs",
+    "refresh": "node --env-file-if-exists=.env.local scripts/refresh-live.mjs",
+    "test:api": "node scripts/test-api.mjs"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "lucide-react": "1.31.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@tailwindcss/postcss": "4.2.1",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "@electric-sql/pglite": "0.3.14"
+  }
+}

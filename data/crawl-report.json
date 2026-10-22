@@ -1,0 +1,56 @@
+{
+  "userAgent": "PlacidWayAssessmentBot/1.0 (+seven-URL assessment knowledge base; no link following)",
+  "minIntervalSeconds": 1.1,
+  "allowlistOnly": true,
+  "sources": [
+    {
+      "id": "clinic",
+      "url": "https://www.placidway.com/profile/5/Alternative-Cancer-Treatment-by-ITC-Immunity-Therapy-Center",
+      "status": "ok",
+      "lines": 76,
+      "characters": 8178
+    },
+    {
+      "id": "adenocarcinoma",
+      "url": "https://www.placidway.com/package/7903/Alternative-Adenocarcinoma-Cancer-Treatment-Package-in-Tijuana-Mexico-by-ITC",
+      "status": "ok",
+      "lines": 90,
+      "characters": 11383
+    },
+    {
+      "id": "adrenal",
+      "url": "https://www.placidway.com/package/7902/Alternative-Adrenal-Cancer-Treatment-Package-in-Tijuana-Mexico-by-ITC",
+      "status": "ok",
+      "lines": 90,
+      "characters": 11503
+    },
+    {
+      "id": "anal",
+      "url": "https://www.placidway.com/package/7901/Alternative-Anal-Cancer-Treatment-Package-in-Tijuana-Mexico-by-ITC",
+      "status": "ok",
+      "lines": 89,
+      "characters": 11341
+    },
+    {
+      "id": "videos",
+      "url": "https://www.placidway.com/profile-videos/5/Alternative-Cancer-Treatment-by-ITC-Immunity-Therapy-Center",
+      "status": "ok",
+      "lines": 142,
+      "characters": 13649
+    },
+    {
+      "id": "prices",
+      "url": "https://www.placidway.com/price-list/5/Alternative-Cancer-Treatment-by-ITC-Immunity-Therapy-Center",
+      "status": "ok",
+      "lines": 21,
+      "characters": 2731
+    },
+    {
+      "id": "comparison",
+      "url": "https://www.placidway.com/search-medical-pricings/Alternative-Medicine/All/1",
+      "status": "ok",
+      "lines": 88,
+      "characters": 8079
+    }
+  ]
+}
