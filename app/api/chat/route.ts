@@ -44,12 +44,12 @@ export async function POST(req: Request) {
         if (apiKey && reply.intent === 'general' && reply.status === 'answered') {
             try {
                 const candidates = chunks(kb).filter(e => reply.evidenceIds.includes(e.id));
-                const ids = await selectWithGroq(body.message, candidates, apiKey, process.env.OPENAI_MODEL || 'gpt-4.1-mini');
+                const ids = await selectWithGroq(body.message, candidates, apiKey, process.env.GROQ_MODEL || 'gpt-4.1-mini');
                 if (ids.length) {
                     const selected = candidates.filter(e => ids.includes(e.id));
                     reply = { ...reply,
                         answer: 'The approved page states:\n\n' + selected.map(e => '• ' + e.text).join('\n') + '\n\nThese are attributed website descriptions, not medical recommendations.',
-                        engine: 'openai-evidence-selection', trace: [...reply.trace, 'constrained_model_selection'] };
+                        engine: 'groq-evidence-selection', trace: [...reply.trace, 'constrained_model_selection'] };
                 }
             } catch { reply = { ...reply, engine: 'extractive-fallback', trace: [...reply.trace, 'model_unavailable_use_verified_evidence'] }; }
         }
